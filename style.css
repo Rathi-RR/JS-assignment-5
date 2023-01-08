@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+body{
+    background-color: #54c3ef;
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #fad744;
+}
+
+h1{
+    text-align: center;
+    font-family: 'Caveat Brush', cursive;
+    font-size:62px;
+    text-shadow: 2px 1px black;
+}
+
+#formWrapper{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 15px
+}
+
+#quizWrapper{
+    background-color: #2b3252;
+    margin: 0;
+    width: 45%;
+    padding: 30px;
+    border-radius: 8px;
+    margin-left: 10%;
+    position: relative;
+}
+
+.Qquestions{
+    padding-bottom: 30px;
+    border-bottom: 1px solid #fad744;
+    margin-bottom: 20px;
+}
+
+.fontYellow{
+    color: #fad744;
+}
+
+label{
+    line-height: 2.5rem;
+    display: block;
+}
+
+#submitBtn{
+    text-align: center;
+}
+
+#submit{
+    background-color: #fad744;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.quizScore {
+    background-color: white;
+    width: 125px;
+    height: 180px;
+    padding: 20px;
+    position: sticky;
+    color: #000000;
+    font-size: 25px;
+    border-radius: 5px;
+    left: 77%;
+    top:20px
+}
