@@ -1,8 +1,5 @@
 $(document).ready(function(){
-$.get("https://5d76bf96515d1a0014085cf9.mockapi.io/quiz", function(response){
-    // console.log(response);
-
-    // Array to store quiz questions
+    $.get("https://5d76bf96515d1a0014085cf9.mockapi.io/quiz", function(response){
     var quizQuestions = []
     for( var i=0; i<response.length; i++){
         quizQuestions.push({
@@ -11,44 +8,41 @@ $.get("https://5d76bf96515d1a0014085cf9.mockapi.io/quiz", function(response){
             'correctAnswer' : response[i].answer
         })
     }
-    // console.log(quizQuestions);
 
-    var quizContainer = $('#quizWrapper')
-    var quizValue = ''
-    for(var j=0; j<quizQuestions.length; j++){
-       var radiobtnOptions = '';
-       var currentQuestion = quizQuestions[j];
-       for(var k=0; k<currentQuestion.options.length; k++){
-        // radiobtnOptions += '<label><input type="radio" name="ques'+j+'" value="'+currentQuestion.options[k]+'"/>'+currentQuestion.options[k]+'</label><br>'
-        radiobtnOptions += `<label><input type="radio" name="ques${j}"  value="${currentQuestion.options[k]}"> ${currentQuestion.options[k]}</label>`
-       }
-       quizValue += '<div class="Qquestions"> <h3>Q'+[j+1]+' '+currentQuestion.question+'</h3>'+radiobtnOptions+'</div>'
-    }
-    quizValue += '<div id="submitBtn"><button type="submit" id="submit">Submit</button></div>'
-    quizContainer.append(quizValue);
-
-
-// Submission of form
-var quizScore = document.getElementById("quizScore");
-
-$("form").submit(function(e){
-   e.preventDefault();
-    var score = 0;  // console.log(quizQuestions[a].correctAnswer)
-    for(var a=0; a<quizQuestions.length; a++){
-        var correctAns = quizQuestions[a]
-        var radioValue = $("input[type=radio]:checked"); // alert(radioValue.val())
-            if(radioValue > 0){
-                alert();
-            }
+var quizContainer = $('#quizWrapper')
+  function createQuiz(){
+    for(let i = 0; i < quizQuestions.length; i++){
+        let questionDiv = $('<div id="question' + i + '"></div>');
+        questionDiv.append('<h3>Q' + (i+1) + '. ' + quizQuestions[i].question + '</h3>');
+        for(let j = 0; j < quizQuestions[i].options.length; j++){
+            questionDiv.append('<label><input type="radio" name="question' + i + '" value="' + j + '">' + quizQuestions[i].options[j] + '</label>');
         }
-quizScore.innerHTML = `You scored ${score} out of ${quizQuestions.length}`;
-});
+        $('#quizWrapper').append(questionDiv);
+    }
+    var quizValue = `<div id="submitBtn"><button type="submit" id="submitForm">Submit</button></div>`
+    $('#quizWrapper').append(quizValue);
+}
 
 
+//Call the function
+createQuiz();
+
+// Form Submission 
+$("form").submit(function(e){
+    e.preventDefault();
+
+    // Calculating the score
+    let score = 0;
+    for(let i = 0; i < quizQuestions.length; i++){
+        let selectedAnswer = $('input[name="question' + i + '"]:checked').val();
+        if(parseInt(selectedAnswer) === quizQuestions[i].correctAnswer){
+            score++;
+        }
+    }
+    //Show the score
+    $('#scoreCount').text(score);
 })
 
-}); 
+}); // API
 
-
-
-  
+}); // main

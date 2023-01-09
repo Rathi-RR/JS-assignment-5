@@ -16,6 +16,10 @@ h1{
     text-shadow: 2px 1px black;
 }
 
+h3{
+    line-height: 26px;
+}
+
 #formWrapper{
     display: flex;
     justify-content: center;
@@ -44,7 +48,7 @@ h1{
 }
 
 label{
-    line-height: 2.5rem;
+    line-height: 2.3rem;
     display: block;
 }
 
@@ -52,7 +56,7 @@ label{
     text-align: center;
 }
 
-#submit{
+#submitForm{
     background-color: #fad744;
     padding: 10px 20px;
     cursor: pointer;
@@ -72,4 +76,24 @@ label{
     border-radius: 5px;
     left: 77%;
     top:20px
+}
+
+@media (min-width:901px) and (max-width: 1200px) {
+    #quizWrapper{width: 53%;}
+}
+
+@media (min-width:768px) and (max-width: 900px) {
+    #quizWrapper{width: 53%;}
+}
+
+@media screen and (max-width: 767px) {
+    #quizWrapper{width: 100%; margin: 0 auto;}
+    #quizScore{position: relative; left: 0;}
+    #formWrapper{padding: 20px;}
+}
+
+@media screen and (max-width: 567px) {
+	.left_col{width: 100%;}
+    .right_col{width: 100%;}
+    #product_details{flex-wrap: wrap;} 
 }
