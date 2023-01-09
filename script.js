@@ -1,6 +1,6 @@
 $(document).ready(function(){
 $.get("https://5d76bf96515d1a0014085cf9.mockapi.io/quiz", function(response){
-    console.log(response);
+    // console.log(response);
 
     // Array to store quiz questions
     var quizQuestions = []
@@ -8,9 +8,10 @@ $.get("https://5d76bf96515d1a0014085cf9.mockapi.io/quiz", function(response){
         quizQuestions.push({
             'question' : response[i].question,
             'options' : response[i].options,
-            'correctAnswer' : response[i].correctAnswer
+            'correctAnswer' : response[i].answer
         })
     }
+    // console.log(quizQuestions);
 
     var quizContainer = $('#quizWrapper')
     var quizValue = ''
@@ -25,24 +26,26 @@ $.get("https://5d76bf96515d1a0014085cf9.mockapi.io/quiz", function(response){
     }
     quizValue += '<div id="submitBtn"><button type="submit" id="submit">Submit</button></div>'
     quizContainer.append(quizValue);
-})
 
-// ON Submit
+
+// Submission of form
+var quizScore = document.getElementById("quizScore");
+
 $("form").submit(function(e){
-    e.preventDefault();
+   e.preventDefault();
+    var score = 0;  // console.log(quizQuestions[a].correctAnswer)
+    for(var a=0; a<quizQuestions.length; a++){
+        var correctAns = quizQuestions[a]
+        var radioValue = $("input[type=radio]:checked"); // alert(radioValue.val())
+            if(radioValue > 0){
+                alert();
+            }
+        }
+quizScore.innerHTML = `You scored ${score} out of ${quizQuestions.length}`;
 });
 
-//On the submit button click calculate the score and show the score in the right-hand side div
-$("#submit").click(function(){
-    var score = 0;
-    var answers = $("input:checked");
-    answers.each(function(){
-        if($(this).val() == "correct")
-            score++;
-    });
-    // $("#score-div").show();
-    $("#scoreCount").text("You got " + score + "/5 correct answers.");
-});
+
+})
 
 }); 
 
